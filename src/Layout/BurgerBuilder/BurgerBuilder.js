@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import Burger from './Burger/Burger';
+import BurgerControls from './BurgerControls/BurgerControls';
 class BurgerBuilder extends Component {
  state = {
   ingredients: {
-   salad: 1,
-   meat: 1,
-   bacon: 1,
-   cheese: 1,
+   salad: 0,
+   meat: 0,
+   bacon: 0,
+   cheese: 0,
   }
+ }
+
+ addIngredientHandler = (igKey) => {
+
+
  }
 
  render() {
@@ -15,7 +21,7 @@ class BurgerBuilder extends Component {
   return (
    <>
     <Burger burgerIngredients={this.state.ingredients} />
-    <div>BurgerControls</div>
+    <BurgerControls addIngredient={this.addIngredientHandler} />
    </>
   )
  }

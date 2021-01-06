@@ -1,0 +1,33 @@
+.BurgerContols {
+ width: 100%;
+ text-align:center;
+ position: absolute;
+ bottom: 0;
+ padding : 40px 0px;
+ background-color: rgba(235, 187, 31, 0.767);
+}.BurgerContolsInner {
+  width: 300px;
+  margin: 0 auto;
+  padding: 2% 0px;
+}.Controls {
+  display: block;
+  padding: 5px 10px;
+  margin: 5px 0px;
+}.ButtonMore {
+  background: rgb(8, 148, 27);
+  color : white;
+  padding: 5px 15px;
+}.ButtonLess {
+  background: rgb(0, 0, 0);
+   color : white;
+   padding: 5px 15px;
+}.Ctrl{
+ font-size: 1.3em ;
+ text-transform: capitalize;
+float: left;
+width: 100px;
+text-align: left;
+line-height: 40.07px;
+}.ButtonSide{
+ text-align: right;
+}
