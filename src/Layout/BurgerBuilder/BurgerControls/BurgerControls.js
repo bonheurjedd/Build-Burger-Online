@@ -13,11 +13,11 @@ class BurgerControls extends Component {
   const Controls = ControlsItems.map((ctrl, keyz) => {
    return (
     <>
-     <div className={classes.Controls} >
+     <div className={classes.Controls}>
       <span className={classes.Ctrl} > {ctrl.type}</span>
       <div className={classes.ButtonSide}>
-       <Buttons > <button className={classes.ButtonLess}>Less</button> </Buttons>
-       <Buttons > <button onClick={() => this.props.addIngredient(ctrl.type)} className={classes.ButtonMore}>More</button> </Buttons>
+       <Buttons> <button onClick={() => this.props.removeIngredient(ctrl.type)} className={classes.ButtonLess}>Less</button> </Buttons>
+       <Buttons> <button onClick={() => this.props.addIngredient(ctrl.type)} className={classes.ButtonMore}>More</button> </Buttons>
       </div>
 
      </div>
