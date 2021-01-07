@@ -1,5 +1,5 @@
 .Message{
- margin: 0 auto;
+    margin: 0 auto;
     width: 300px;
     position: relative;
     padding: 20px 0px;
@@ -9,13 +9,12 @@
     color: rgb(255, 255, 255);
     transition: all 300ms ease-in;
 }.MessageHide{
+    margin: 0 auto;
     width: 300px;
+    opacity: 0;
+    transform: translateY(-40px);
     position: relative;
-    padding: 20px 0px;
-    z-index: 99; 
-    background: rgb(4, 219, 33);
-    border-radius: 10px;
-    color: rgb(255, 255, 255);
+    padding: 20px 0px; 
+    background: rgb(219, 4, 4);
     transition: all 300ms ease-in;
-   
 }

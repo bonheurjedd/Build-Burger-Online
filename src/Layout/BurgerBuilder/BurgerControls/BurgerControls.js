@@ -16,8 +16,8 @@ class BurgerControls extends Component {
      <div className={classes.Controls}>
       <span className={classes.Ctrl} > {ctrl.type}</span>
       <div className={classes.ButtonSide}>
-       <Buttons> <button onClick={() => this.props.removeIngredient(ctrl.type)} className={classes.ButtonLess}>Less</button> </Buttons>
-       <Buttons> <button onClick={() => this.props.addIngredient(ctrl.type)} className={classes.ButtonMore}>More</button> </Buttons>
+       <Buttons> <button disabled={this.props.disable} onClick={() => this.props.removeIngredient(ctrl.type)} className={classes.ButtonLess}>Less</button> </Buttons>
+       <Buttons> <button disabled={this.props.disable} onClick={() => this.props.addIngredient(ctrl.type)} className={classes.ButtonMore}>More</button> </Buttons>
       </div>
 
      </div>
