@@ -13,7 +13,7 @@ class BurgerControls extends Component {
   const Controls = ControlsItems.map((ctrl, keyz) => {
    return (
     <>
-     <div className={classes.Controls}>
+     <div>
       <span className={classes.Ctrl} > {ctrl.type}</span>
       <div className={classes.ButtonSide}>
        <Buttons> <button disabled={this.props.disable} onClick={() => this.props.removeIngredient(ctrl.type)} className={classes.ButtonLess}>Less</button> </Buttons>

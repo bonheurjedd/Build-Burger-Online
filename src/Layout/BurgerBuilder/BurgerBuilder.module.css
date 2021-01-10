@@ -1,6 +1,25 @@
 .Icon{
-  position: absolute;
-    width: 15px;
-    top: 10px;
-    right: 10px;  
+position: absolute;
+    width: 10px;
+    top: 6px;
+    right: 9px;
+    border: 2px solid white;
+    padding: 3px 3px;
+    border-radius: 70%;
+    cursor: pointer;
+}.TotalPrice{
+    margin: 10px 0px;
+    color: #000000;
+    z-index: 1;
+    top: 0px;
+    position: relative;
+    font-weight: bold;
+    font-size: 1.3em;
+}.BurgerContols {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    background-color: rgb(237 191 43);
+    height: 40%;
+    padding: 20px 0px;
 }

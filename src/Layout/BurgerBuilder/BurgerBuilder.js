@@ -4,13 +4,16 @@ import BurgerControls from './BurgerControls/BurgerControls';
 import Message from './BurgerControls/Messages/Message';
 import closeItem from '../Assets/images/icon.png'
 import classes from './BurgerBuilder.module.css';
+import Summary from '../Summary/Summary';
+import OrderNow from './OrderNow/OrderNow';
+import BackOrder from './BackOrder/BackOrder';
 
-// const ingredientPrices = {
-//  salad: 0.5,
-//  meat: 0.8,
-//  bacon: 0.7,
-//  cheese: 0.4
-// }
+const ingredientPrices = {
+ salad: 0.7,
+ meat: 0.8,
+ bacon: 1,
+ cheese: 0.8
+}
 class BurgerBuilder extends Component {
  state = {
   ingredients: {
@@ -20,35 +23,49 @@ class BurgerBuilder extends Component {
    cheese: 0,
   },
   Message: false,
-  MessageText: ""
-
-
+  MessageText: "",
+  NoIngridient: false,
+  initialPrice: 4,
+  Purchasable: false,
+  OrderNow: false,
  }
+ // ________functions___________
  addIngredientHandler = (igKey) => {
   const ingredientsCopy = { ...this.state.ingredients };
   if (ingredientsCopy[igKey] < 2) {
    ingredientsCopy[igKey] += 1;
+   const oldPrice = this.state.initialPrice;
+   const sumIngredients = oldPrice + ingredientPrices[igKey];
+   this.setState({ initialPrice: sumIngredients, });
+   this.youCanCheckOut(ingredientsCopy);
   } else {
    this.setState(
     {
      Message: true,
-     MessageText: "You Can Only Add 2 " + igKey + " Only "
+     MessageText: "You Can Only Add 2 " + igKey + " Only ",
+
     }
    );
   }
-
   this.setState({ ingredients: ingredientsCopy });
+
  }
+
+ // ____end________
 
  removeIngredientHandler = (igKey) => {
   const ingredientsCopy = { ...this.state.ingredients };
   if (ingredientsCopy[igKey] > 0) {
    ingredientsCopy[igKey] -= 1;
+   const oldPrice = this.state.initialPrice;
+   const sumIngredients = oldPrice - ingredientPrices[igKey];
+   this.setState({ initialPrice: sumIngredients });
+   this.youCanCheckOut(ingredientsCopy);
   } else {
    this.setState(
     {
      Message: true,
-     MessageText: "No More " + igKey + " To Remove "
+     MessageText: "No  " + igKey + " To Remove ",
     }
    );
   }
@@ -56,23 +73,96 @@ class BurgerBuilder extends Component {
   this.setState({ ingredients: ingredientsCopy });
  }
 
+ // ____end________
+
  ToggleMessage = () => {
   this.setState({ Message: false })
  }
- render() {
 
+ // ____end________
+
+ // constructor(props) {
+ //  super(props);
+ //  this.NoIngridientChecker = this.NoIngridientChecker.bind(this);
+ // }
+
+
+ // NoIngridientChecker = () => {
+ //  const newIngredsValues = Object.values({ ...this.state.ingredients });
+ //  console.log(newIngredsValues);
+ //  const newIngredsLength = newIngredsValues.reduce((total, currentValue) => {
+ //   return total + currentValue;
+ //  }, 0);
+ //  if (newIngredsLength === 0) {
+ //   this.setState({ NoIngridient: true });
+ //  }
+ // }
+ //_________end_________
+ OrderNowHandler = () => {
+  this.setState({ OrderNow: true });
+  console.log("OrderNowHandler" + this.state.OrderNow);
+ }
+ orderedlist = () => {
+  const updatedList = Object.keys(this.state.ingredients).map
+
+ }
+ showSummary = (props) => {
+  if (this.state.OrderNow) {
+   return (
+    <>
+     <Summary c listoforder={props.orderedlist} />
+     <BackOrder />
+    </>
+   )
+  }
+ }
+ youCanCheckOut = (ingredients) => {
+  const newIngredsValues = Object.values(ingredients);
+  console.log(newIngredsValues);
+  const newIngredsLength = newIngredsValues.reduce((total, currentValue) => {
+   return total + currentValue;
+  }, 0);
+  console.log("newIngredsLength" + newIngredsLength)
+  if (newIngredsLength !== 0) {
+   this.setState({ Purchasable: true });
+  }
+ }
+
+ // PurchasableHandler = () => {
+ //  const newIngredsValues = Object.values({ ...this.state.ingredients });
+ //  console.log(newIngredsValues);
+ //  const newIngredsLength = newIngredsValues.reduce((total, currentValue) => {
+ //   return total + currentValue;
+ //  }, 0);
+ //  if (newIngredsLength === 0) {
+ //   this.setState({ Purchasable: true });
+ //  }
+ // }
+
+
+ // ________end_functions___________
+
+ render() {
+  console.log(this.state.Purchasable);
   return (
    <>
+    {this.showSummary()}
     <Burger burgerIngredients={this.state.ingredients} />
-    <Message messageEmpty={this.state.Message}>
-     {this.state.MessageText}
-     <img onClick={this.ToggleMessage} className={classes.Icon} src={closeItem} alt="close" />
-    </Message>
-    <BurgerControls
-     removeIngredient={this.removeIngredientHandler}
-     addIngredient={this.addIngredientHandler}
-     disable={this.state.Message}
-    />
+    <div className={classes.BurgerContols}>
+     <Message messageEmpty={this.state.Message}>
+      {this.state.MessageText}
+      <img onClick={this.ToggleMessage} className={classes.Icon} src={closeItem} alt="close" />
+     </Message>
+     <div className={classes.TotalPrice}>Total: {(this.state.initialPrice.toFixed(2))}$ </div>
+     <BurgerControls
+      removeIngredient={this.removeIngredientHandler}
+      addIngredient={this.addIngredientHandler}
+      disable={this.state.Message}
+      zeroIngredient={this.NoIngridientChecker}
+     />
+     <OrderNow goCheckout={this.state.Purchasable} checkoutNow={this.OrderNowHandler} />
+
+    </div>
    </>
   )
  }

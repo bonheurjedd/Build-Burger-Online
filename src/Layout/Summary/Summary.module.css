@@ -1,0 +1,10 @@
+.SummaryBox {
+    position: absolute;
+    z-index: 99;
+    background: #d7712f;
+    padding: 20px 10px;
+    left: 50%;
+    border-radius: 22px;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
