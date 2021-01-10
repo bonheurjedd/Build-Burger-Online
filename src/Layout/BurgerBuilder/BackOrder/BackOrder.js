@@ -4,7 +4,7 @@ import classes from './BackOrder.module.css';
 const BackOrder = (props) => {
  return (
   <>
-   <div className={classes.Backorder}>
+   <div onClick={props.toclose} className={classes.Backorder}>
 
    </div>
   </>

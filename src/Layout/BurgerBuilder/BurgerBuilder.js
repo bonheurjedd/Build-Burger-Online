@@ -25,7 +25,7 @@ class BurgerBuilder extends Component {
   Message: false,
   MessageText: "",
   NoIngridient: false,
-  initialPrice: 4,
+  Price: 4,
   Purchasable: false,
   OrderNow: false,
  }
@@ -34,9 +34,9 @@ class BurgerBuilder extends Component {
   const ingredientsCopy = { ...this.state.ingredients };
   if (ingredientsCopy[igKey] < 2) {
    ingredientsCopy[igKey] += 1;
-   const oldPrice = this.state.initialPrice;
+   const oldPrice = this.state.Price;
    const sumIngredients = oldPrice + ingredientPrices[igKey];
-   this.setState({ initialPrice: sumIngredients, });
+   this.setState({ Price: sumIngredients, });
    this.youCanCheckOut(ingredientsCopy);
   } else {
    this.setState(
@@ -57,9 +57,9 @@ class BurgerBuilder extends Component {
   const ingredientsCopy = { ...this.state.ingredients };
   if (ingredientsCopy[igKey] > 0) {
    ingredientsCopy[igKey] -= 1;
-   const oldPrice = this.state.initialPrice;
+   const oldPrice = this.state.Price;
    const sumIngredients = oldPrice - ingredientPrices[igKey];
-   this.setState({ initialPrice: sumIngredients });
+   this.setState({ Price: sumIngredients });
    this.youCanCheckOut(ingredientsCopy);
   } else {
    this.setState(
@@ -102,16 +102,26 @@ class BurgerBuilder extends Component {
   this.setState({ OrderNow: true });
   console.log("OrderNowHandler" + this.state.OrderNow);
  }
- orderedlist = () => {
-  const updatedList = Object.keys(this.state.ingredients).map
-
+ CloseBackOrder = () => {
+  this.setState({ OrderNow: false })
  }
+ // orderedlist = () => {
+ //  const updatedList = Object.keys(this.state.ingredients)
+ //   .map((Igreds) => {
+
+ //   })
+
+ // }
  showSummary = (props) => {
   if (this.state.OrderNow) {
    return (
     <>
-     <Summary c listoforder={props.orderedlist} />
-     <BackOrder />
+     <Summary
+      listoforder={this.state.ingredients}
+      SummaryPrice={this.state.Price.toFixed(2)}
+      CancelOrder={this.CloseBackOrder}
+     />
+     <BackOrder toclose={this.CloseBackOrder} />
     </>
    )
   }
@@ -153,7 +163,7 @@ class BurgerBuilder extends Component {
       {this.state.MessageText}
       <img onClick={this.ToggleMessage} className={classes.Icon} src={closeItem} alt="close" />
      </Message>
-     <div className={classes.TotalPrice}>Total: {(this.state.initialPrice.toFixed(2))}$ </div>
+     <div className={classes.TotalPrice}>Total: {(this.state.Price.toFixed(2))}$ </div>
      <BurgerControls
       removeIngredient={this.removeIngredientHandler}
       addIngredient={this.addIngredientHandler}
