@@ -13,11 +13,19 @@ class BurgerControls extends Component {
   const Controls = ControlsItems.map((ctrl, keyz) => {
    return (
     <>
-     <div>
+     <div key={keyz}>
       <span className={classes.Ctrl} > {ctrl.type}</span>
       <div className={classes.ButtonSide}>
-       <Buttons> <button disabled={this.props.disable} onClick={() => this.props.removeIngredient(ctrl.type)} className={classes.ButtonLess}>Less</button> </Buttons>
-       <Buttons> <button disabled={this.props.disable} onClick={() => this.props.addIngredient(ctrl.type)} className={classes.ButtonMore}>More</button> </Buttons>
+       <Buttons> <button
+        disabled={this.props.disable || this.props.zeroIngredient}
+        onClick={() => this.props.removeIngredient(ctrl.type)}
+        className={classes.ButtonLess}
+       >Less</button> </Buttons>
+       <Buttons> <button
+        disabled={this.props.disable}
+        onClick={() => this.props.addIngredient(ctrl.type)}
+        className={classes.ButtonMore}
+       >More</button> </Buttons>
       </div>
 
      </div>

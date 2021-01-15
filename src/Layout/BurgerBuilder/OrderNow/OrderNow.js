@@ -5,7 +5,7 @@ const OrderNow = (props) => {
  return (
   <>
    <div className={classes.OrderButton}>
-    <button disabled={!props.goCheckout} onClick={props.checkoutNow} className={classes.Order}>Order Now </button>
+    <button disabled={props.goCheckout} onClick={props.checkoutNow} className={classes.Order}>Order Now </button>
    </div>
   </>
  )

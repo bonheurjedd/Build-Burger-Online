@@ -24,9 +24,10 @@ class BurgerBuilder extends Component {
   },
   Message: false,
   MessageText: "",
-  NoIngridient: false,
+  NoIngridient: true,
+  cantRemove: true,
   Price: 4,
-  Purchasable: false,
+  Purchasable: true,
   OrderNow: false,
  }
  // ________functions___________
@@ -38,6 +39,7 @@ class BurgerBuilder extends Component {
    const sumIngredients = oldPrice + ingredientPrices[igKey];
    this.setState({ Price: sumIngredients, });
    this.youCanCheckOut(ingredientsCopy);
+
   } else {
    this.setState(
     {
@@ -48,7 +50,15 @@ class BurgerBuilder extends Component {
    );
   }
   this.setState({ ingredients: ingredientsCopy });
-
+  const newIngredsValues = Object.values({ ...ingredientsCopy });
+  console.log(newIngredsValues);
+  const newIngredsLength = newIngredsValues.reduce((total, currentValue) => {
+   return total + currentValue;
+  }, 0);
+  console.log(newIngredsLength);
+  if (newIngredsLength !== 0) {
+   this.setState({ NoIngridient: false });
+  }
  }
 
  // ____end________
@@ -71,8 +81,21 @@ class BurgerBuilder extends Component {
   }
 
   this.setState({ ingredients: ingredientsCopy });
+  const newIngredsValues = Object.values({ ...ingredientsCopy });
+  console.log(newIngredsValues);
+  const newIngredsLength = newIngredsValues.reduce((total, currentValue) => {
+   return total + currentValue;
+  }, 0);
+  console.log(newIngredsLength);
+  if (newIngredsLength !== 0) {
+   this.setState({ NoIngridient: false });
+   console.log(this.state.NoIngridient)
+  } else {
+   this.setState({ NoIngridient: true, Purchasable: true });
+   console.log(this.state.Purchasable)
+  }
  }
-
+ s
  // ____end________
 
  ToggleMessage = () => {
@@ -93,10 +116,12 @@ class BurgerBuilder extends Component {
  //  const newIngredsLength = newIngredsValues.reduce((total, currentValue) => {
  //   return total + currentValue;
  //  }, 0);
+ //  console.log(newIngredsLength);
  //  if (newIngredsLength === 0) {
- //   this.setState({ NoIngridient: true });
+ //   this.setState({ NoIngridient: false });
  //  }
  // }
+
  //_________end_________
  OrderNowHandler = () => {
   this.setState({ OrderNow: true });
@@ -134,7 +159,7 @@ class BurgerBuilder extends Component {
   }, 0);
   console.log("newIngredsLength" + newIngredsLength)
   if (newIngredsLength !== 0) {
-   this.setState({ Purchasable: true });
+   this.setState({ Purchasable: false });
   }
  }
 
@@ -153,7 +178,6 @@ class BurgerBuilder extends Component {
  // ________end_functions___________
 
  render() {
-  console.log(this.state.Purchasable);
   return (
    <>
     {this.showSummary()}
@@ -168,7 +192,7 @@ class BurgerBuilder extends Component {
       removeIngredient={this.removeIngredientHandler}
       addIngredient={this.addIngredientHandler}
       disable={this.state.Message}
-      zeroIngredient={this.NoIngridientChecker}
+      zeroIngredient={this.state.NoIngridient}
      />
      <OrderNow goCheckout={this.state.Purchasable} checkoutNow={this.OrderNowHandler} />
 
