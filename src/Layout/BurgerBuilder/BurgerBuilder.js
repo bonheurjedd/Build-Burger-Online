@@ -10,7 +10,7 @@ import BackOrder from './BackOrder/BackOrder';
 
 const ingredientPrices = {
  salad: 0.7,
- meat: 0.8,
+ meat: 0.9,
  bacon: 1,
  cheese: 0.8
 }
