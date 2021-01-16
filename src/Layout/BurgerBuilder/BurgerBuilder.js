@@ -7,6 +7,7 @@ import classes from './BurgerBuilder.module.css';
 import Summary from '../Summary/Summary';
 import OrderNow from './OrderNow/OrderNow';
 import BackOrder from './BackOrder/BackOrder';
+import axios from '../../axios-orders';
 
 const ingredientPrices = {
  salad: 0.7,
@@ -130,6 +131,26 @@ class BurgerBuilder extends Component {
  CloseBackOrder = () => {
   this.setState({ OrderNow: false })
  }
+ sentOrder = () => {
+  const orderPost = {
+   ingredients: this.state.ingredients,
+   price: this.state.Price,
+   customer: {
+    name: 'bonheur jed',
+    address: {
+     street: 'Street1',
+     postalcode: 'H4L1P5',
+     country: 'Canada'
+    },
+    email: 'test@test.com'
+   },
+   deliveryMethod: 'Fastest'
+  }
+  axios.post('/orders.json', orderPost)
+   .then(response => console.log(response))
+   .catch(error => console.log(error));
+ }
+
  // orderedlist = () => {
  //  const updatedList = Object.keys(this.state.ingredients)
  //   .map((Igreds) => {
@@ -145,6 +166,7 @@ class BurgerBuilder extends Component {
       listoforder={this.state.ingredients}
       SummaryPrice={this.state.Price.toFixed(2)}
       CancelOrder={this.CloseBackOrder}
+      sentOrder={this.sentOrder}
      />
      <BackOrder toclose={this.CloseBackOrder} />
     </>
