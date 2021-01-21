@@ -10,6 +10,7 @@ import BackOrder from './BackOrder/BackOrder';
 import instance from '../../axios-orders';
 import Spinner from './Spinner/Spinner';
 import ErrorHandler from './ErrorHandler/ErrorHandler';
+import axios from 'axios';
 const ingredientPrices = {
   salad: 0.7,
   meat: 0.9,
@@ -18,12 +19,7 @@ const ingredientPrices = {
 }
 class BurgerBuilder extends Component {
   state = {
-    ingredients: {
-      salad: 0,
-      meat: 0,
-      bacon: 0,
-      cheese: 0,
-    },
+    ingredients: null,
     Message: false,
     MessageText: "",
     NoIngridient: true,
@@ -32,7 +28,17 @@ class BurgerBuilder extends Component {
     Purchasable: true,
     OrderNow: false,
     loading: false,
+    error: false,
 
+  }
+  componentDidMount() {
+    axios.get('https://react-my-burger-228f1-default-rtdb.firebaseio.com/ingredients.json')
+      .then(response => {
+        this.setState({ ingredients: response.data })
+      })
+      .catch(error => {
+        this.setState({ error: true })
+      })
   }
   // ________functions___________
   addIngredientHandler = (igKey) => {
@@ -188,11 +194,15 @@ class BurgerBuilder extends Component {
 
 
   render() {
+    const shows = this.showSummary();
+    let humburger = this.state.error ? <p>Ingredient Can't be loaded ! </p> : <Spinner />;
+    if (this.state.ingredients) {
+      humburger = <Burger burgerIngredients={this.state.ingredients} />
+    }
     return (
       <>
-        {this.showSummary()}
-
-        <Burger burgerIngredients={this.state.ingredients} />
+        {shows}
+        {humburger}
         <div className={classes.BurgerContols}>
           <Message messageEmpty={this.state.Message}>
             {this.state.MessageText}
