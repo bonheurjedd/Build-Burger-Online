@@ -8,4 +8,8 @@
 }button:disabled {
     background: #545454;
     color: #868686;
+}@media only screen and (max-width: 1025px) {
+.OrderButton{
+    background: rgb(237 191 43);
+}
 }

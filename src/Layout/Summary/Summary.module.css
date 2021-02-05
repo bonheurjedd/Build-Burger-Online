@@ -9,4 +9,8 @@
     transform: translate(-50%,-50%);
 }.OrderNumberZ{
     display: block;
+}@media only screen and (max-width: 1025px) {
+.SummaryBox{
+    width: 85%;
+}
 }

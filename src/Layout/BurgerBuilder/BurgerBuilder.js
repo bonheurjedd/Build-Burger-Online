@@ -10,7 +10,6 @@ import BackOrder from './BackOrder/BackOrder';
 import instance from '../../axios-orders';
 import Spinner from './Spinner/Spinner';
 import ErrorHandler from './ErrorHandler/ErrorHandler';
-import axios from 'axios';
 const ingredientPrices = {
   salad: 0.7,
   meat: 0.9,
@@ -19,7 +18,12 @@ const ingredientPrices = {
 }
 class BurgerBuilder extends Component {
   state = {
-    ingredients: null,
+    ingredients: {
+      bacon: 0,
+      salad: 0,
+      cheese: 0,
+      meat: 0,
+    },
     Message: false,
     MessageText: "",
     NoIngridient: true,
@@ -31,15 +35,15 @@ class BurgerBuilder extends Component {
     error: false,
 
   }
-  componentDidMount() {
-    axios.get('https://react-my-burger-228f1-default-rtdb.firebaseio.com/ingredients.json')
-      .then(response => {
-        this.setState({ ingredients: response.data })
-      })
-      .catch(error => {
-        this.setState({ error: true })
-      })
-  }
+  // componentDidMount() {
+  //   axios.get('https://react-my-burger-228f1-default-rtdb.firebaseio.com/ingredients.json')
+  //     .then(response => {
+  //       this.setState({ ingredients: response.data })
+  //     })
+  //     .catch(error => {
+  //       this.setState({ error: true })
+  //     })
+  // }
   // ________functions___________
   addIngredientHandler = (igKey) => {
     const ingredientsCopy = { ...this.state.ingredients };

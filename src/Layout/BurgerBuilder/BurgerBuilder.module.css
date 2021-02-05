@@ -22,4 +22,14 @@ position: absolute;
     background-color: rgb(237 191 43);
     height: 40%;
     padding: 20px 0px;
+}@media only screen and (max-width: 1025px) {
+    .BurgerContols {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    background-color: rgb(237 191 43);
+    height: 40%;
+    padding: 20px 0px;
+    bottom: 0;
+}
 }

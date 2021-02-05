@@ -1,9 +1,10 @@
 import React from 'react';
 import BurgerBuilder from './BurgerBuilder/BurgerBuilder';
+import Toolbar from './ToolBar/ToolBar';
 const Layout = () => {
  return (
   <>
-   <div>Toolbar</div>
+   <Toolbar />
    <BurgerBuilder />
   </>
  )
