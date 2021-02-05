@@ -19,10 +19,10 @@ const ingredientPrices = {
 class BurgerBuilder extends Component {
   state = {
     ingredients: {
-      salad: 0,
-      meat: 0,
       bacon: 0,
+      salad: 0,
       cheese: 0,
+      meat: 0,
     },
     Message: false,
     MessageText: "",
@@ -32,8 +32,18 @@ class BurgerBuilder extends Component {
     Purchasable: true,
     OrderNow: false,
     loading: false,
+    error: false,
 
   }
+  // componentDidMount() {
+  //   axios.get('https://react-my-burger-228f1-default-rtdb.firebaseio.com/ingredients.json')
+  //     .then(response => {
+  //       this.setState({ ingredients: response.data })
+  //     })
+  //     .catch(error => {
+  //       this.setState({ error: true })
+  //     })
+  // }
   // ________functions___________
   addIngredientHandler = (igKey) => {
     const ingredientsCopy = { ...this.state.ingredients };
@@ -188,11 +198,15 @@ class BurgerBuilder extends Component {
 
 
   render() {
+    const shows = this.showSummary();
+    let humburger = this.state.error ? <p>Ingredient Can't be loaded ! </p> : <Spinner />;
+    if (this.state.ingredients) {
+      humburger = <Burger burgerIngredients={this.state.ingredients} />
+    }
     return (
       <>
-        {this.showSummary()}
-
-        <Burger burgerIngredients={this.state.ingredients} />
+        {shows}
+        {humburger}
         <div className={classes.BurgerContols}>
           <Message messageEmpty={this.state.Message}>
             {this.state.MessageText}
