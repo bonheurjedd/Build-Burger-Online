@@ -28,13 +28,13 @@
     line-height: 3;
         display: inline-block;
         padding : 0px 10px;
-    background: rgb(237 191 43);
+    background: #bf723d;
     border-bottom: 3px solid rgb(0, 0, 0);
 }.NavWrapperDeskop nav ul {
     margin: unset;
 }.NavWrapperDeskop nav ul li a:hover, .NavWrapperDeskop nav ul li a:active {
-    background: #bf723d;
-    color:white;
+   background:  rgb(237 191 43);
+    color:black;
 }.OnlyMobile{
   display: none;
 }@media only screen and (max-width: 500px) {
