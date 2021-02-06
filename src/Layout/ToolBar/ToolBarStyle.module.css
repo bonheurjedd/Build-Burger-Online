@@ -39,8 +39,24 @@
   display: none;
 }@media only screen and (max-width: 500px) {
   .NavWrapperDeskop {
-   display: none;
-  }
+  display: block;
+    position: absolute;
+    background: #000000;
+    height: 100vh;
+    text-align: left;
+     margin: unset;  
+    padding: 0 !important;
+        width: 50%;
+  }.NavWrapperDeskop nav ul li  a {
+    display: block;
+    line-height: 3;
+}.NavWrapperDeskop nav ul li {
+    display: block;
+}.NavWrapperDeskop nav ul {
+   padding : 0 !important;
+}nav {
+    margin-top: 50px !important;
+}
   .LogoWrapper {
     padding-right: 20px;
     float: right;
@@ -58,5 +74,16 @@
     display: block;
     margin: 6px;
     position: relative;
+}.LogoWrapperMobile{
+    padding-right: 0px;
+    float: left !important;
+}.LogoWrapperMobile img {
+        width: 40px;
+    background: white;
+    padding: 5px;
+    margin-top: 6px;
+    margin-left: 10px;
+    border-radius: 8px;
+    display: inline-block;
 }
 }

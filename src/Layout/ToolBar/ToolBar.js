@@ -14,6 +14,9 @@ const Toolbar = () => {
      <img src={logo} />
     </div>
     <div className={classes.NavWrapperDeskop}>
+     <div className={classes.LogoWrapperMobile}>
+      <img src={logo} />
+     </div>
      <nav>
       <ul>
        <li>
