@@ -13,7 +13,7 @@ class BurgerControls extends Component {
   const Controls = ControlsItems.map((ctrl, keyz) => {
    return (
     <>
-     <div key={keyz}>
+     <div key={keyz} >
       <span className={classes.Ctrl} > {ctrl.type}</span>
       <div className={classes.ButtonSide}>
        <Buttons> <button
