@@ -11,7 +11,7 @@ const Toolbar = () => {
      <span></span>
     </div>
     <div className={classes.LogoWrapper}>
-     <img src={logo} />
+     <img alt="logo" src={logo} />
     </div>
     <div className={classes.NavWrapperDeskop}>
      <nav>
