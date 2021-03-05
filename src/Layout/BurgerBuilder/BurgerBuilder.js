@@ -132,28 +132,29 @@ class BurgerBuilder extends Component {
   // ____end________
 
   sentOrder = () => {
-    this.setState({ loading: true })
-    const orderPost = {
-      ingredients: this.state.ingredients,
-      price: this.state.Price,
-      customer: {
-        name: 'bonheur jed',
-        address: {
-          street: 'Street1',
-          postalcode: 'H4L1P5',
-          country: 'Canada'
-        },
-        email: 'test@test.com'
-      },
-      deliveryMethod: 'Fastest'
-    }
-    instance.post('/orders.json', orderPost)
-      .then(response => {
-        this.setState({ loading: false, OrderNow: false });
-      })
-      .catch(error => {
-        this.setState({ loading: false, OrderNow: false })
-      });
+    // this.setState({ loading: true })
+    // const orderPost = {
+    //   ingredients: this.state.ingredients,
+    //   price: this.state.Price,
+    //   customer: {
+    //     name: 'bonheur jed',
+    //     address: {
+    //       street: 'Street1',
+    //       postalcode: 'H4L1P5',
+    //       country: 'Canada'
+    //     },
+    //     email: 'test@test.com'
+    //   },
+    //   deliveryMethod: 'Fastest'
+    // }
+    // instance.post('/orders.json', orderPost)
+    //   .then(response => {
+    //     this.setState({ loading: false, OrderNow: false });
+    //   })
+    //   .catch(error => {
+    //     this.setState({ loading: false, OrderNow: false })
+    //   });
+    this.props.history.push('/checkout')
   }
 
   // ____end________
