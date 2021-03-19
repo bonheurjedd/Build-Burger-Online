@@ -1,10 +1,15 @@
 import React from 'react';
 import BurgerBuilder from './BurgerBuilder/BurgerBuilder';
+import Toolbar from './ToolBar/ToolBar';
+import { Route, Switch } from 'react-router-dom'
 const Layout = () => {
  return (
   <>
-   <div>Toolbar</div>
-   <BurgerBuilder />
+   <Toolbar />
+   <Switch>
+    <Route path="/checkout" component={BurgerBuilder} />
+    <Route path="/" exact component={BurgerBuilder} />
+   </Switch>
   </>
  )
 }

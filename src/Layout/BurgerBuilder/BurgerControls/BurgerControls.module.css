@@ -35,4 +35,22 @@ line-height: 40.07px;
 button:disabled {
     background: #545454;
     color: #868686;
+}@media only screen and (max-width: 500px) { 
+.Burger {
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 15px;
+}.BurgerContols .BurgerContolsInner {
+    width: 250px;
+    
+    padding: 0px !important;
+}.Ctrl{
+font-size: 1.3em ;
+text-transform: capitalize;
+float: left;
+width: 50px;
+text-align: left;
+line-height: 40.07px;
 }
+}
+

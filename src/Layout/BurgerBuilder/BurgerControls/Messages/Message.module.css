@@ -17,4 +17,10 @@
     padding: 20px 0px; 
     background: rgb(219, 4, 4);
     transition: all 300ms ease-in;
+}@media only screen and (max-width: 1025px) {
+.Message{
+    width:95%;
+}.MessageHide{
+    width:95%;
+}
 }

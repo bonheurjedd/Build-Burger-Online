@@ -1,0 +1,17 @@
+.ErrorClass{
+ display: block;
+ width: 100%;
+ background:rgb(7, 1, 1);
+ height: 100%;
+ position: relative;
+ top: 0;
+ left: 0;
+ z-index: 99;
+}.ErrorInside{
+ display: block;
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%,-50%);
+  z-index: 99;
+}

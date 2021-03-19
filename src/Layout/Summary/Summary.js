@@ -20,7 +20,7 @@ const Summary = (props) => {
     <p>Continue to Checkout ? </p>
 
     <button onClick={props.CancelOrder}>Cancel</button>
-    <button>Continue</button>
+    <button onClick={props.sentOrder}>Continue</button>
    </div>
   </>
  )

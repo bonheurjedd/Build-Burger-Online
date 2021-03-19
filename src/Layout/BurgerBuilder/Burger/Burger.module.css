@@ -2,6 +2,13 @@
  width: 400px;
  margin: 0 auto;
  height: 50%;
- padding-top: 20px;
+ padding-top: 50px;
 
+}@media only screen and (max-width: 500px) { 
+.Burger {
+    width: 100%;
+    margin: 0 auto;
+    height: 50%;
+    padding-top: 50px;
+}
 }
